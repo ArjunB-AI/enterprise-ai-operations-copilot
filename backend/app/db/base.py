@@ -1,3 +1,4 @@
+#enterprise-ai-operations-copilot\backend\app\db\base.py
 from sqlalchemy.orm import DeclarativeBase
 
 
