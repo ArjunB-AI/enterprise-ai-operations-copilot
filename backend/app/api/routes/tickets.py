@@ -95,14 +95,51 @@ def update_ticket(
             detail="Ticket not found",
         )
 
+    allowed_transitions = {
+        "open": ["in_progress"],
+        "in_progress": ["resolved"],
+        "resolved": ["closed"],
+        "closed": [],
+    }
+
     if ticket_data.status is not None:
+        if ticket_data.status not in allowed_transitions[ticket.status]:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"Cannot transition ticket from {ticket.status} to {ticket_data.status}",
+            )
+
         ticket.status = ticket_data.status
 
     if ticket_data.priority is not None:
+        if ticket.status in ["resolved", "closed"]:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Cannot change priority of a resolved or closed ticket",
+            )
+
         ticket.priority = ticket_data.priority
 
     if ticket_data.assigned_to is not None:
-        ticket.assigned_to = ticket_data.assigned_to
+        assigned_user = (
+            db.query(User)
+            .filter(User.id == ticket_data.assigned_to)
+            .first()
+        )
+
+        if assigned_user is None:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Assigned user not found",
+            )
+
+        if assigned_user.role != "it_support":
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Ticket can only be assigned to IT Support users",
+            )
+
+        ticket.assigned_to = assigned_user.id
 
     db.commit()
     db.refresh(ticket)
