@@ -1,0 +1,796 @@
+====================================================================================================
+ARJUN TECH AI PVT. LTD.
+Bahadurpally, Hyderabad, Telangana, India
+====================================================================================================
+
+LAPTOP AND IT ASSET REPLACEMENT PROCEDURE
+Document ID: ATAI-IT-SOP-003
+
+DOCUMENT CONTROL
+----------------
+Document Title:         Laptop and IT Asset Replacement Procedure
+Document ID:            ATAI-IT-SOP-003
+Company:                Arjun Tech AI Pvt. Ltd., Bahadurpally, Hyderabad, Telangana, India
+Version:                1.0
+Publication Date:       7 November 2026
+Review Date:            7 November 2027
+Classification:         Internal Use Only
+Document Owner:         IT Support Manager (IT Support department), supported by the IT Asset
+                        Coordinator
+Approval Authority:     Head of IT and Security
+Applies To:             All employees, interns and contract staff of Arjun Tech AI Pvt. Ltd. who are
+                        assigned Company IT assets; IT Support, IT Asset team, Department Managers,
+                        HR and Finance in their asset-related roles
+Related Documents:      ATAI-IT-POL-001 Employee IT Support Policy; ATAI-SEC-POL-002 Password and
+                        Access Management Policy; ATAI-HR-IT-SOP-004 Employee Onboarding and IT
+                        Access Provisioning SOP; ATAI-SEC-POL-005 IT Incident Management and
+                        Security Incident Response Policy
+
+      NOTE: Fictional-company notice: Arjun Tech AI Pvt. Ltd. is a fictional company created for a
+      software portfolio project. This document describes fictional internal rules based on common
+      enterprise practice. It is not a legal or regulatory requirement and must not be relied on as
+      legal advice. All identifiers, ticket numbers, asset IDs and targets are fictional examples.
+
+REVISION HISTORY
+----------------
+Version 1.0 | 7 November 2026 | IT Support Manager | Initial release.
+
+====================================================================================================
+
+====================================================================================================
+1. PURPOSE AND SCOPE
+====================================================================================================
+
+1.1 Purpose
+-----------
+
+This Standard Operating Procedure (SOP) defines how employees of Arjun Tech AI Pvt. Ltd. (the
+Company) request, receive, use, replace and return Company IT assets. It explains when a faulty or
+old asset is repaired or replaced, who must approve the replacement, and how the asset record is
+kept correct.
+
+1.2 Scope
+---------
+
+This SOP applies to all Company-owned IT assets issued to employees, interns and contract staff, at
+the Bahadurpally, Hyderabad office and for remote work. It covers laptops, desktops, monitors,
+keyboards and mice, headsets, docking stations and other approved peripherals. It does not cover
+mobile phones, office furniture or personally owned equipment.
+
+1.3 Definitions
+---------------
+
++--------------------------+-----------------------------------------------------------------------+
+| Term                     | Meaning                                                               |
++==========================+=======================================================================+
+| IT Asset                 | Any Company-owned hardware item with an asset ID that is recorded in  |
+|                          | the IT asset register.                                                |
++--------------------------+-----------------------------------------------------------------------+
+| IT Asset Register        | The central record of all IT assets, their owner, status, location,   |
+|                          | warranty and history.                                                 |
++--------------------------+-----------------------------------------------------------------------+
+| Asset ID                 | A unique identifier in the form ATAI-(type code)-(5 digits).          |
+|                          | Fictional examples: ATAI-LAP-00125 for a laptop, ATAI-MON-00045 for a |
+|                          | monitor. All asset IDs in this document are fictional.                |
++--------------------------+-----------------------------------------------------------------------+
+| IT Asset Coordinator     | The member of the IT Asset team who manages stock, assignment, the    |
+|                          | register and retirement.                                              |
++--------------------------+-----------------------------------------------------------------------+
+| ServiceDesk Portal       | The ATAI ServiceDesk Portal, the Company ticketing tool.              |
++--------------------------+-----------------------------------------------------------------------+
+| Replacement              | Issuing a new or refurbished asset to take the place of an existing   |
+|                          | asset.                                                                |
++--------------------------+-----------------------------------------------------------------------+
+| Loaner Device            | A temporary device lent to an employee while the assigned device is   |
+|                          | repaired or replaced.                                                 |
++--------------------------+-----------------------------------------------------------------------+
+| End-of-Life (EOL)        | The point when an asset reaches the age or condition at which it is   |
+|                          | no longer worth supporting.                                           |
++--------------------------+-----------------------------------------------------------------------+
+| Escalation Level         | Level 1 IT Support Engineer, Level 2 IT Administrator, Level 3 IT     |
+|                          | Support Manager or Information Security Lead, Level 4 Head of IT and  |
+|                          | Security.                                                             |
++--------------------------+-----------------------------------------------------------------------+
+| Business Hours           | 9:00 AM to 6:00 PM India Standard Time (IST), Monday to Friday,       |
+|                          | excluding Company holidays.                                           |
++--------------------------+-----------------------------------------------------------------------+
+
+1.4 Fictional Content Notice
+----------------------------
+
+      NOTE: Arjun Tech AI Pvt. Ltd. is a fictional company created for a software portfolio project.
+      All asset IDs, ticket numbers, specifications, refresh cycles and service targets in this
+      document are fictional examples. Targets are internal service targets, not guarantees. This
+      SOP is not a legal or regulatory requirement.
+
+====================================================================================================
+2. IT ASSET MANAGEMENT RESPONSIBILITIES
+====================================================================================================
+
++------------------------------------+-------------------------------------------------------------+
+| Role                               | Responsibilities                                            |
++====================================+=============================================================+
+| Employee                           | Use the asset for Company work only, keep it safe, report   |
+|                                    | faults and loss promptly, return it when asked, never       |
+|                                    | repair or open it, never lend it to another person.         |
++------------------------------------+-------------------------------------------------------------+
+| IT Support Engineer (Level 1)      | Perform initial troubleshooting, decide whether a repair or |
+|                                    | replacement is likely, record findings in the ticket, issue |
+|                                    | Loaner Devices when authorised, and hand the case to the IT |
+|                                    | Asset Coordinator.                                          |
++------------------------------------+-------------------------------------------------------------+
+| IT Administrator (Level 2)         | Prepare devices with the standard Company image, apply      |
+|                                    | encryption, enrol the device in device management, wipe     |
+|                                    | returned devices, and perform remote lock or wipe for lost  |
+|                                    | or stolen devices.                                          |
++------------------------------------+-------------------------------------------------------------+
+| IT Asset Coordinator (IT Asset     | Maintain the IT Asset Register, check stock availability,   |
+| team)                              | assign assets, tag and label assets, track warranties and   |
+|                                    | refresh cycles, update asset status, arrange repair with    |
+|                                    | vendors, and manage retirement and secure disposal.         |
++------------------------------------+-------------------------------------------------------------+
+| IT Support Manager (Level 3)       | Owns this SOP, approves replacements as shown in section 9, |
+|                                    | handles exceptions and reviews monthly asset reports.       |
++------------------------------------+-------------------------------------------------------------+
+| Information Security Lead          | Takes ownership of lost or stolen asset incidents and       |
+|                                    | decides on security actions (ATAI-SEC-POL-005).             |
++------------------------------------+-------------------------------------------------------------+
+| Department Manager                 | Approves replacements for performance and repeated damage,  |
+|                                    | confirms business need, ensures team members return assets  |
+|                                    | when leaving.                                               |
++------------------------------------+-------------------------------------------------------------+
+| HR Manager                         | Informs IT Support of leavers and transfers, reviews cases  |
+|                                    | of repeated damage or negligent loss.                       |
++------------------------------------+-------------------------------------------------------------+
+| Finance Manager                    | Is informed of lost, stolen or written-off assets so that   |
+|                                    | the Company's fixed-asset records are updated, and confirms |
+|                                    | budget for out-of-cycle purchases above the standard stock. |
++------------------------------------+-------------------------------------------------------------+
+| Head of IT and Security (Level 4)  | Approves this SOP, approves high-specification devices      |
+|                                    | outside the standard configurations and approves exceptions |
+|                                    | to this SOP.                                                |
++------------------------------------+-------------------------------------------------------------+
+
+====================================================================================================
+3. TYPES OF SUPPORTED ASSETS
+====================================================================================================
+
++------------------+------------+-------------------------------------------+----------------------+
+| Asset type       | Code in    | Standard (fictional) specification        | Standard refresh     |
+|                  | Asset ID   |                                           | cycle (fictional)    |
++==================+============+===========================================+======================+
+| Laptop -         | LAP        | 16 GB memory, 512 GB solid-state drive,   | 4 years              |
+| Business         |            | standard Company image                    |                      |
++------------------+------------+-------------------------------------------+----------------------+
+| Laptop -         | LAP        | 32 GB memory, 1 TB solid-state drive.     | 4 years              |
+| Developer or     |            | AI/ML role may receive a model with a     |                      |
+| AI/ML            |            | dedicated graphics processor              |                      |
++------------------+------------+-------------------------------------------+----------------------+
+| Desktop          | DSK        | Business desktop for fixed positions such | 5 years              |
+|                  |            | as reception or lab                       |                      |
++------------------+------------+-------------------------------------------+----------------------+
+| Monitor          | MON        | 24-inch or 27-inch display                | 6 years              |
++------------------+------------+-------------------------------------------+----------------------+
+| Keyboard and     | KBD and    | Wired or wireless standard set            | Replace on failure   |
+| mouse            | MSE        |                                           | or after 3 years     |
++------------------+------------+-------------------------------------------+----------------------+
+| Headset          | HST        | USB or wireless headset with microphone   | Replace on failure   |
+|                  |            |                                           | or after 3 years     |
++------------------+------------+-------------------------------------------+----------------------+
+| Docking station  | DOC        | Docking station for office desks          | 4 years              |
++------------------+------------+-------------------------------------------+----------------------+
+| Other approved   | OTH        | Webcam, external drive, security cable    | Replace on failure   |
+| peripherals      |            | lock, privacy screen and similar items on |                      |
+|                  |            | the approved list                         |                      |
++------------------+------------+-------------------------------------------+----------------------+
+
+Non-standard devices (for example a high-memory workstation) are issued only with Department Manager
+approval and Head of IT and Security approval. Personal accessories are not supported.
+
+====================================================================================================
+4. ASSET ASSIGNMENT PROCEDURE
+====================================================================================================
+
+  1) New joiner assets are requested in the onboarding ticket (ATAI-HR-IT-SOP-004). Other requests
+    for new assets are created in the ServiceDesk Portal as Service Request, category New asset,
+    with the business reason and Department Manager name.
+  2) The IT Support Engineer checks the request against the employee's role and the standard
+    specification.
+  3) The IT Asset Coordinator checks stock in the IT Asset Register. If the item is in stock, it is
+    reserved for the employee. If it is not in stock, the IT Asset Coordinator informs the IT
+    Support Manager, who decides whether to purchase with Finance Manager budget confirmation.
+  4) The IT Administrator prepares laptops and desktops: standard image, disk encryption, device
+    management enrolment, security tools and the employee's baseline software.
+  5) The IT Asset Coordinator updates the register: status changes from Available to Assigned, with
+    the assignee's name, employee ID, department and assignment date.
+  6) The employee collects the asset at the Bahadurpally IT Support desk (or receives it through an
+    agreed courier process for remote staff). The employee shows identification and signs the asset
+    acknowledgement in the ServiceDesk Portal, confirming the asset ID and condition.
+  7) The IT Support Engineer closes the request after the employee confirms that the asset works.
+
+Fictional fulfilment targets: replacement peripheral in stock, 2 Business Days; laptop in stock, 3
+Business Days; both from completion of approvals.
+
+====================================================================================================
+5. ASSET REGISTRATION AND TRACKING
+====================================================================================================
+
+5.1 What the Register Holds
+---------------------------
+
+Each asset record contains: asset ID, type, make and model, serial number, purchase date, warranty
+end date, current status, assigned employee and employee ID, department, location (Bahadurpally
+office or remote), date assigned, previous owners, maintenance history, replacement tickets and the
+date and reason of retirement.
+
+5.2 Tagging
+-----------
+
+  - Each asset receives a physical label showing the asset ID. The label must not be removed.
+  - Serial numbers are checked against the register at assignment and return.
+  - A fictional example record: Asset ID ATAI-LAP-00125, type Laptop - Developer, status Assigned,
+    department Engineering, assigned date 12 January 2026, warranty end 11 January 2029. Another
+    fictional example: Asset ID ATAI-MON-00045, type Monitor 27-inch, status Available, location IT
+    stock room, Bahadurpally.
+
+5.3 Register Accuracy
+---------------------
+
+  - The IT Asset Coordinator updates the register on the same day as every assignment, return,
+    status change or retirement.
+  - A physical verification of all assets is done every 6 months. Employees confirm the assets
+    assigned to them through the ServiceDesk Portal. Missing or unconfirmed assets are raised as
+    tickets for investigation.
+  - Only the IT Asset Coordinator and the IT Support Manager may change status to Retired.
+
+====================================================================================================
+6. ASSET REPLACEMENT ELIGIBILITY
+====================================================================================================
+
+An asset is eligible for replacement when one of the following is true. Details of approvals are in
+section 9.
+
+  1) Hardware failure that cannot be repaired within the repair target, or where repair cost is more
+    than 50 percent of the cost of an equivalent replacement.
+  2) Physical damage that makes the asset unsafe or unusable, where repair is not practical.
+  3) Performance limitation that is proven: the asset cannot run Company-approved software needed
+    for the role after troubleshooting, memory or storage upgrade and re-imaging.
+  4) End-of-Life: the asset has reached its standard refresh cycle (section 3) or has no vendor
+    support.
+  5) Lost or stolen asset, after the loss is reported under section 12.
+
+An asset is not eligible for replacement for personal preference, cosmetic wear, a wish for a newer
+model, or when the problem is a software issue that can be fixed. A Department Manager may ask the
+IT Support Manager for an exception, which is recorded in the ticket.
+
+Fictional repair target: a repair should be expected to be completed within 5 Business Days. If the
+vendor estimate is longer than 5 Business Days, replacement is considered.
+
+====================================================================================================
+7. REPLACEMENT REQUEST WORKFLOW
+====================================================================================================
+
+7.1 Overview
+------------
+
+The workflow has seven steps. Priorities and response targets follow ATAI-IT-POL-001. Most hardware
+tickets are P3 or P4. A laptop failure that completely blocks one employee from a critical task may
+be raised to P2 by the IT Support Manager (ATAI-IT-POL-001, section 6.5).
+
+7.2 Step 1: Employee Reports an Issue
+-------------------------------------
+
+The employee creates a ServiceDesk Portal ticket (Incident, Hardware, with the asset ID) or contacts
+IT Support by helpline or walk-up desk. For a lost or stolen device the employee follows section 12
+first. The employee must give the asset ID, the symptoms, when the problem began and what has been
+tried.
+
+7.3 Step 2: IT Support Performs Initial Troubleshooting
+-------------------------------------------------------
+
+The IT Support Engineer runs standard checks: power and charger, battery, connections, safe-mode
+start, operating system recovery, diagnostics, storage and memory health, and a replacement of
+simple accessories such as cables. The Engineer records the results and the diagnostic reference in
+the ticket. If the device cannot be used, the Engineer may issue a Loaner Device from stock (section
+7.8). The employee must not be left without a working device where stock allows.
+
+7.4 Step 3: IT Support Determines Repair or Replacement
+-------------------------------------------------------
+
+The IT Support Engineer uses the decision table in section 9.2:
+
+  - If the fault can be fixed in the first line, the Engineer repairs it and resolves the ticket.
+  - If a vendor repair is needed, the IT Asset Coordinator arranges it. The asset status changes to
+    Under Maintenance.
+  - If repair is not possible, too slow or too costly, the Engineer recommends replacement and the
+    status changes to Replacement Requested.
+
+7.5 Step 4: Department Manager Approval Where Required
+------------------------------------------------------
+
+The ServiceDesk Portal routes the replacement to the approvers shown in the approval matrix (section
+9.1). Approvers answer within 2 Business Days. A rejected request is closed with a written reason
+and the employee is informed.
+
+7.6 Step 5: IT Asset Team Verifies Availability
+-----------------------------------------------
+
+The IT Asset Coordinator checks the register for a suitable asset with status Available. Where none
+is in stock, the IT Support Manager approves an order after the Finance Manager confirms the budget.
+The ticket stays In Progress with a "Waiting for Vendor" note, and the employee keeps the Loaner
+Device.
+
+7.7 Step 6: Replacement Is Assigned
+-----------------------------------
+
+The IT Administrator prepares the replacement as in section 4 and restores the employee's approved
+data from Company cloud storage and backup. The IT Asset Coordinator changes the replacement's
+status to Assigned and records the new assignment. The employee signs the acknowledgement.
+
+7.8 Loaner Devices
+------------------
+
+  - A Loaner Device is issued only for a laptop or desktop failure that blocks work, while the
+    original is repaired or replaced.
+  - It has the standard image and is registered in the register as Assigned with the note "Loaner".
+  - The Loaner Device must be returned within 2 Business Days after the replacement is assigned.
+  - Loaner Devices are issued only after the identity of the employee is verified.
+
+7.9 Step 7: Old Asset Is Returned and Status Updated
+----------------------------------------------------
+
+  - The employee returns the old asset (with charger and accessories issued with it) to the IT
+    Support desk within 2 Business Days of receiving the replacement.
+  - The IT Administrator wipes the device securely after confirming that no data needs to be kept.
+    For a device that is in an investigation, no wipe is done until the Information Security Lead
+    releases it.
+  - The IT Asset Coordinator updates the register: Under Maintenance (if it will be repaired),
+    Available (if it is serviceable and reusable) or Retired (if it has reached EOL or cannot be
+    repaired).
+  - The IT Support Engineer resolves the ticket after both the new asset acknowledgement and the old
+    asset return are recorded. The ticket then closes under ATAI-IT-POL-001.
+
+====================================================================================================
+8. REPLACEMENT REASONS
+====================================================================================================
+
+8.1 Hardware Failure
+--------------------
+
+Failure of components without employee misuse, such as battery, motherboard, drive, screen panel or
+charger faults. If the asset is within warranty, the vendor warranty route is used first.
+Replacement is approved when the repair target would be missed or the fault returns after repair.
+
+8.2 Physical Damage
+-------------------
+
+Damage from drops, liquids, pressure or other accidents. The IT Support Engineer records the cause
+given by the employee, photographs the damage and checks whether it is accidental or caused by
+careless use. A first accidental incident is replaced or repaired normally. A second incident in 12
+months, or damage that appears intentional or the result of ignoring safety rules, is reviewed by
+the Department Manager and the HR Manager. Whether any cost recovery applies is decided by the HR
+Manager under the Company's HR rules, which are not part of this SOP.
+
+8.3 Performance Limitations
+---------------------------
+
+The device works but cannot run approved software for the employee's role with acceptable
+performance, for example a laptop that cannot run an AI model training workload that the role
+requires. The IT Support Engineer first checks background software, storage, memory upgrade and the
+image. If the limit remains, the case needs written evidence (resource monitor results and the
+software requirement) and approval by the Department Manager and the IT Support Manager. A device
+with higher specification than standard needs Head of IT and Security approval.
+
+8.4 End-of-Life Devices
+-----------------------
+
+The IT Asset Coordinator produces a quarterly list of assets reaching their refresh cycle in the
+next 3 months. The IT Asset Coordinator informs the Department Manager and schedules replacements,
+usually within 30 days of the cycle date. No employee request is needed.
+
+8.5 Lost or Stolen Devices
+--------------------------
+
+Handled first as a security incident under section 12. Replacement is considered only after the
+Information Security Lead confirms that security containment is complete.
+
+====================================================================================================
+9. APPROVAL MATRIX
+====================================================================================================
+
+9.1 Approvals by Replacement Reason
+-----------------------------------
+
++--------------------------+----------+----------+-----------+----------+--------------------------+
+| Replacement reason       | IT       | IT Asset | IT        | Departme | Others                   |
+|                          | Support  | Coordina | Support   | nt       |                          |
+|                          | Engineer | tor      | Manager   | Manager  |                          |
++==========================+==========+==========+===========+==========+==========================+
+| Hardware failure, not    | Recommen | Verifies | Informed, | Informed | None                     |
+| repairable, within or    | ds       | stock    | no        |          |                          |
+| outside warranty         |          |          | approval  |          |                          |
+|                          |          |          | needed    |          |                          |
++--------------------------+----------+----------+-----------+----------+--------------------------+
+| Physical damage, first   | Recommen | Verifies | Approves  | Informed | None                     |
+| incident in 12 months    | ds       | stock    |           |          |                          |
++--------------------------+----------+----------+-----------+----------+--------------------------+
+| Physical damage,         | Recommen | Verifies | Approves  | Approves | HR Manager reviews       |
+| repeated within 12       | ds       | stock    |           |          |                          |
+| months or suspected      |          |          |           |          |                          |
+| misuse                   |          |          |           |          |                          |
++--------------------------+----------+----------+-----------+----------+--------------------------+
+| Performance limitation,  | Gathers  | Verifies | Approves  | Approves | None                     |
+| standard specification   | evidence | stock    |           |          |                          |
++--------------------------+----------+----------+-----------+----------+--------------------------+
+| Performance limitation,  | Gathers  | Verifies | Approves  | Approves | Head of IT and Security  |
+| higher than standard     | evidence | stock    |           |          | approves; Finance        |
+| specification            |          |          |           |          | Manager confirms budget  |
++--------------------------+----------+----------+-----------+----------+--------------------------+
+| End-of-Life              | Not      | Initiate | Informed  | Informed | None                     |
+|                          | needed   | s        |           |          |                          |
++--------------------------+----------+----------+-----------+----------+--------------------------+
+| Lost or stolen           | Records  | Verifies | Approves  | Approves | Information Security     |
+|                          | report   | stock    |           |          | Lead engaged; Finance    |
+|                          |          |          |           |          | Manager informed; HR     |
+|                          |          |          |           |          | Manager informed if      |
+|                          |          |          |           |          | negligence is suspected  |
++--------------------------+----------+----------+-----------+----------+--------------------------+
+| Peripheral failure       | Confirms | Issues   | Not       | Not      | None                     |
+| (keyboard, mouse,        | fault    | from     | needed    | needed   |                          |
+| headset, monitor,        |          | stock    |           |          |                          |
+| docking station)         |          |          |           |          |                          |
++--------------------------+----------+----------+-----------+----------+--------------------------+
+| Exception outside this   | Records  | Records  | Recommend | Approves | Head of IT and Security  |
+| SOP                      |          |          | s         |          | approves                 |
++--------------------------+----------+----------+-----------+----------+--------------------------+
+
+9.2 Replacement Decision Table
+------------------------------
+
++--------------------------------+--------------------------------+--------------------------------+
+| Condition                      | Required approvals             | Next action                    |
++================================+================================+================================+
+| Fault fixed by Level 1         | None                           | IT Support Engineer resolves   |
+| troubleshooting, such as a     |                                | the ticket. No replacement.    |
+| charger swap or an operating   |                                |                                |
+| system reset                   |                                |                                |
++--------------------------------+--------------------------------+--------------------------------+
+| Hardware fault in warranty,    | None                           | IT Asset Coordinator arranges  |
+| vendor repair estimated in 5   |                                | repair. Status Under           |
+| Business Days or less          |                                | Maintenance. Loaner Device if  |
+|                                |                                | work is blocked.               |
++--------------------------------+--------------------------------+--------------------------------+
+| Hardware fault, vendor repair  | IT Support Manager informed    | Replacement is approved.       |
+| estimated over 5 Business      |                                | Status Replacement Requested.  |
+| Days, or repair cost over 50   |                                |                                |
+| percent of replacement cost    |                                |                                |
++--------------------------------+--------------------------------+--------------------------------+
+| Same hardware fault occurs     | IT Support Manager informed    | Replace the asset. Record the  |
+| again within 60 days after a   |                                | repeat failure.                |
+| repair                         |                                |                                |
++--------------------------------+--------------------------------+--------------------------------+
+| Accidental damage, first       | IT Support Manager             | Repair. If not practical,      |
+| incident in 12 months, repair  |                                | replace.                       |
+| practical                      |                                |                                |
++--------------------------------+--------------------------------+--------------------------------+
+| Accidental damage, repair not  | IT Support Manager; Department | Replace. Old asset returned    |
+| practical                      | Manager informed               | and retired.                   |
++--------------------------------+--------------------------------+--------------------------------+
+| Second damage incident in 12   | IT Support Manager, Department | Replacement decided after      |
+| months                         | Manager, HR Manager review     | review. Loaner Device may be   |
+|                                |                                | issued meanwhile.              |
++--------------------------------+--------------------------------+--------------------------------+
+| Device is slow, but no         | None                           | IT Support Engineer            |
+| hardware fault, and            |                                | troubleshoots first.           |
+| troubleshooting not tried      |                                | Replacement request is not     |
+|                                |                                | accepted before that.          |
++--------------------------------+--------------------------------+--------------------------------+
+| Device cannot run required     | IT Support Manager and         | Replace with standard device,  |
+| approved software after        | Department Manager             | or higher specification with   |
+| troubleshooting                |                                | extra approvals.               |
++--------------------------------+--------------------------------+--------------------------------+
+| Device reached the standard    | None from employee             | IT Asset Coordinator schedules |
+| refresh cycle                  |                                | replacement.                   |
++--------------------------------+--------------------------------+--------------------------------+
+| Device lost or stolen          | Information Security Lead      | Follow section 12. Replace     |
+|                                | engaged; IT Support Manager    | after containment.             |
+|                                | and Department Manager approve |                                |
++--------------------------------+--------------------------------+--------------------------------+
+| Peripheral faulty              | None                           | Exchange from stock. Return    |
+|                                |                                | the faulty item.               |
++--------------------------------+--------------------------------+--------------------------------+
+| No suitable replacement in     | IT Support Manager approves    | Order. Loaner Device while     |
+| stock                          | purchase; Finance Manager      | waiting.                       |
+|                                | confirms budget                |                                |
++--------------------------------+--------------------------------+--------------------------------+
+
+====================================================================================================
+10. ASSET STATUS LIFECYCLE
+====================================================================================================
+
+10.1 Statuses
+-------------
+
+The asset register uses five statuses. These terms are used in all five Company documents.
+
++-----------------+--------------------------------------------+-----------------------------------+
+| Status          | Meaning                                    | Who changes it                    |
++=================+============================================+===================================+
+| Available       | In stock, serviceable, not assigned to     | IT Asset Coordinator              |
+|                 | anyone. Ready for assignment.              |                                   |
++-----------------+--------------------------------------------+-----------------------------------+
+| Assigned        | Issued to a named person (including Loaner | IT Asset Coordinator              |
+|                 | Devices).                                  |                                   |
++-----------------+--------------------------------------------+-----------------------------------+
+| Under           | Being repaired by IT Support or a vendor.  | IT Asset Coordinator              |
+| Maintenance     | Not usable.                                |                                   |
++-----------------+--------------------------------------------+-----------------------------------+
+| Replacement     | A replacement has been requested and is    | IT Support Engineer or IT Asset   |
+| Requested       | pending approval, availability or return.  | Coordinator                       |
++-----------------+--------------------------------------------+-----------------------------------+
+| Retired         | Permanently withdrawn from use (end-of-    | IT Asset Coordinator with IT      |
+|                 | life, beyond repair, lost, stolen or       | Support Manager approval          |
+|                 | disposed).                                 |                                   |
++-----------------+--------------------------------------------+-----------------------------------+
+
+10.2 Allowed Status Changes
+---------------------------
+
++--------------------+--------------------+--------------------------------------------------------+
+| From               | To                 | Condition                                              |
++====================+====================+========================================================+
+| Available          | Assigned           | Approved request and acknowledgement signed            |
++--------------------+--------------------+--------------------------------------------------------+
+| Assigned           | Under Maintenance  | Vendor or workshop repair needed                       |
++--------------------+--------------------+--------------------------------------------------------+
+| Assigned           | Replacement        | Replacement is recommended                             |
+|                    | Requested          |                                                        |
++--------------------+--------------------+--------------------------------------------------------+
+| Replacement        | Assigned           | Request rejected, or asset kept after repair decision  |
+| Requested          |                    |                                                        |
++--------------------+--------------------+--------------------------------------------------------+
+| Replacement        | Retired            | Old asset returned and cannot be reused, or reported   |
+| Requested          |                    | lost or stolen                                         |
++--------------------+--------------------+--------------------------------------------------------+
+| Replacement        | Under Maintenance  | Repair chosen instead of replacement                   |
+| Requested          |                    |                                                        |
++--------------------+--------------------+--------------------------------------------------------+
+| Under Maintenance  | Available          | Repair complete, asset returned to stock after wipe    |
++--------------------+--------------------+--------------------------------------------------------+
+| Under Maintenance  | Retired            | Repair not possible                                    |
++--------------------+--------------------+--------------------------------------------------------+
+| Assigned           | Available          | Employee returned the asset in good condition (for     |
+|                    |                    | example at leaving) after wipe                         |
++--------------------+--------------------+--------------------------------------------------------+
+| Available          | Retired            | Asset reached end-of-life while in stock               |
++--------------------+--------------------+--------------------------------------------------------+
+
+Lost or stolen assets move from Assigned to Replacement Requested and then to Retired with the
+reason code "Lost" or "Stolen". Retired assets cannot return to any other status.
+
+10.3 Secure Disposal
+--------------------
+
+Retired devices are wiped to remove data before disposal. The IT Asset Coordinator records the
+disposal method and date, and gives written confirmation to the IT Support Manager. Disposal is
+carried out through an approved disposal or recycling vendor chosen by the Operations and
+Administration department. Devices held for investigation are not disposed of until the Information
+Security Lead releases them.
+
+====================================================================================================
+11. EMPLOYEE RESPONSIBILITIES FOR ASSET SAFETY
+====================================================================================================
+
+  - Keep the laptop with you or locked away. Do not leave it in a car, on a desk overnight, or
+    unattended in a public place.
+  - Use only the supplied charger and approved accessories.
+  - Keep drinks and food away from devices.
+  - Use a sleeve or bag when travelling. Do not check a laptop into airline luggage.
+  - Lock the screen whenever you leave the device, and sign out of sensitive applications.
+  - Do not install unapproved software, change disk encryption settings, remove the asset label or
+    open the device.
+  - Do not lend your device to relatives, friends or colleagues.
+  - Do not store the only copy of important work on the laptop. Use the approved Company cloud
+    storage.
+  - Do not use a Company laptop for personal activities that increase security risk, such as
+    downloading pirated software.
+  - Report any damage, fault, loss or suspicious behaviour of the device at once (ATAI-IT-POL-001).
+  - Work on a personal device is not permitted for restricted Company data.
+
+====================================================================================================
+12. LOST OR STOLEN ASSET REPORTING PROCEDURE
+====================================================================================================
+
+12.1 Employee Actions
+---------------------
+
+  1) Report the loss or theft immediately by calling the IT Support helpline, and in any case within
+    1 hour of discovering it. Do not wait to search for the device.
+  2) Create a ServiceDesk Portal ticket (Incident, Security, Lost or stolen device) as soon as
+    possible, giving the asset ID, the place and time of loss, what data or access the device held,
+    and whether the device was locked, encrypted and signed in.
+  3) Change the password of any account used on the device from another trusted device, if you can.
+    Deny any unexpected MFA prompts.
+  4) Follow any instruction from the Information Security Lead about reporting a theft to the
+    police. The Company may ask for a copy of the police complaint number for its records.
+  5) Do not try to recover the device from unknown persons or attempt to access it remotely
+    yourself.
+
+12.2 IT Support and Security Actions
+------------------------------------
+
+  1) The IT Support Engineer creates or updates the ticket, sets the priority to at least P2, and
+    notifies the Information Security Lead and the IT Support Manager immediately.
+  2) The Information Security Lead takes ownership and follows the security incident workflow in
+    ATAI-SEC-POL-005. A device with unencrypted restricted data, privileged credentials or access to
+    production systems is treated as P1.
+  3) The IT Administrator locks the device remotely, or wipes it when the Information Security Lead
+    confirms, and revokes the sessions, tokens, VPN profile and MFA registrations linked to the
+    device. Target: within 1 hour of confirmation.
+  4) The IT Administrator reviews the sign-in logs for the employee accounts and disables access
+    that is not needed.
+  5) The IT Asset Coordinator changes the asset status to Replacement Requested and notes "Reported
+    lost" or "Reported stolen". If the device is not recovered after 10 Business Days, the status
+    changes to Retired with the reason "Lost" or "Stolen".
+  6) The Finance Manager is informed so that the Company's fixed-asset records are updated. The HR
+    Manager is informed if negligence is suspected.
+  7) After the Information Security Lead confirms that containment is complete, a replacement is
+    issued under section 7 with approvals as in section 9.
+  8) If the device is recovered, it is not returned to the employee's use until the IT Administrator
+    has checked it and the Information Security Lead has released it.
+
+====================================================================================================
+13. ASSET RETURN DURING EMPLOYEE SEPARATION
+====================================================================================================
+
+  1) The HR Manager submits the offboarding request with the last working day (ATAI-HR-IT-SOP-004,
+    section 20).
+  2) The IT Asset Coordinator reviews the register for all assets assigned to the employee and sends
+    the list to the employee and the Department Manager.
+  3) The employee returns all assets with accessories to the IT Support desk on or before the last
+    working day. Remote employees return them through the agreed courier process, within 3 Business
+    Days of the last working day.
+  4) The IT Support Engineer inspects each asset against the acknowledgement record, checks the
+    serial numbers and notes damage or missing items.
+  5) The IT Administrator wipes the devices (after any legal or investigation hold is confirmed
+    absent) and the IT Asset Coordinator changes the status to Available or Retired.
+  6) Missing or damaged assets are reported to the HR Manager and Department Manager. The HR Manager
+    decides on follow-up under the Company's HR rules.
+  7) The IT Support Engineer records in the offboarding ticket that all assets have been received.
+    The access removal steps in ATAI-SEC-POL-002 (section 13) run in parallel.
+
+====================================================================================================
+14. SAMPLE ASSET REPLACEMENT SCENARIOS
+====================================================================================================
+
+All names, IDs and cases below are fictional examples.
+
+14.1 Scenario A: Laptop Will Not Power On
+-----------------------------------------
+
+An AI/ML engineer reports that laptop ATAI-LAP-00188 does not power on. Ticket ATAI-INC-000731 is
+raised as P3, and raised to P2 by the IT Support Manager because the engineer has a model release
+today. The IT Support Engineer tests the charger and battery reset and finds a failed motherboard.
+Vendor repair is estimated at 8 Business Days, longer than 5. The Engineer issues a Loaner Device
+and recommends replacement. The IT Support Manager approves (hardware failure needs no Department
+Manager approval). The IT Asset Coordinator assigns a developer laptop from stock in 2 Business
+Days. The old laptop is returned and its status changes to Retired.
+
+14.2 Scenario B: Monitor Flickering
+-----------------------------------
+
+An operations employee reports that monitor ATAI-MON-00045 flickers. The IT Support Engineer swaps
+the cable and tests the port, but the fault remains. A replacement monitor is issued from stock the
+next day. The faulty monitor is returned and marked Under Maintenance, then Retired when the vendor
+says it is not repairable. No approval is needed.
+
+14.3 Scenario C: Laptop Dropped and Screen Cracked
+--------------------------------------------------
+
+A finance employee drops the laptop and the screen cracks. The IT Support Engineer photographs the
+damage. This is the first incident in 12 months, so the IT Support Manager approves a screen repair
+because it is practical (4 Business Days). A Loaner Device is lent. The status goes Assigned, Under
+Maintenance, Assigned. If the same employee causes another incident within 12 months, the Department
+Manager and HR Manager review the case.
+
+14.4 Scenario D: Slow Laptop for Data Work
+------------------------------------------
+
+A data analyst in AI/ML says the laptop is too slow. The IT Support Engineer clears startup software
+and finds memory use at the limit while running the approved training notebook. A memory upgrade is
+not supported. The Engineer collects the resource monitor evidence. The Department Manager and IT
+Support Manager approve a standard developer laptop. The Head of IT and Security does not need to
+approve, because the specification is standard. The old device is returned and set to Available
+after the wipe, or Retired if it has reached EOL.
+
+14.5 Scenario E: Laptop Reaches End-of-Life
+-------------------------------------------
+
+The IT Asset Coordinator's quarterly report shows that laptop ATAI-LAP-00125 reaches the 4-year
+cycle in January 2030. (Fictional dates.) The IT Asset Coordinator informs the Department Manager 3
+months before and schedules the replacement. The employee exchanges the device during a planned slot
+with no ticket needed.
+
+14.6 Scenario F: Laptop Stolen From a Car
+-----------------------------------------
+
+An engineer reports by helpline, within 20 minutes of discovery, that a laptop was stolen from a
+parked car. Ticket ATAI-INC-000790 is created as Security, Lost or stolen device, P2 minimum. The
+Information Security Lead confirms that disk encryption was on and no restricted data was stored
+locally, so P2 stays. The IT Administrator locks and wipes the device remotely, revokes tokens and
+signs the sessions out within 1 hour of confirmation. The employee's passwords are reset and MFA
+re-enrolled under ATAI-SEC-POL-002. The Department Manager and IT Support Manager approve a
+replacement after containment. The HR Manager is informed. The asset becomes Retired with the reason
+"Stolen" after 10 Business Days if not recovered.
+
+14.7 Scenario G: Employee Resigns and Returns Equipment
+-------------------------------------------------------
+
+An employee resigns with a last working day of 30 November 2026 (fictional). The IT Asset
+Coordinator lists the laptop, monitor and headset. On the last working day the employee returns
+them. The IT Support Engineer inspects them and finds the headset cable missing. The headset is
+recorded as damaged, and the HR Manager is informed. The laptop is wiped and set to Available.
+
+====================================================================================================
+15. FREQUENTLY ASKED QUESTIONS
+====================================================================================================
+
+Q: My laptop is not working. How do I ask for a replacement?
+A: Create a ServiceDesk Portal ticket (Incident, Hardware) with the asset ID. The IT Support
+   Engineer will troubleshoot first and then decide whether repair or replacement is appropriate.
+   You do not need to ask for a replacement directly, but you can say that you think the device
+   cannot be repaired.
+
+Q: How long does it take to get a replacement laptop?
+A: The fictional internal target is 3 Business Days from the completion of approvals if a suitable
+   laptop is in stock. If none is in stock, the IT Support Manager approves an order and the time
+   depends on the vendor. A Loaner Device can be lent meanwhile.
+
+Q: Who needs to approve my replacement?
+A: It depends on the reason (see the approval matrix in section 9.1). Hardware failure needs no
+   approval from your manager. Performance limitation needs your Department Manager and the IT
+   Support Manager. Lost or stolen devices need the Department Manager and the IT Support Manager,
+   after the Information Security Lead has handled the security aspects.
+
+Q: Can I get a new laptop because mine is slow?
+A: Slowness alone does not qualify. IT Support first troubleshoots. If the device still cannot run
+   the approved software for your role, a performance-limitation replacement may be approved with
+   your Department Manager and the IT Support Manager.
+
+Q: When is a laptop replaced automatically?
+A: When it reaches the standard refresh cycle, which is 4 years for laptops (fictional). The IT
+   Asset Coordinator contacts your Department Manager and you before the date.
+
+Q: What do I do if I lose my laptop?
+A: Call the IT Support helpline immediately and no later than 1 hour after you notice it is missing.
+   Then raise a Security ticket for a lost or stolen device. The Information Security Lead takes
+   over. Do not wait until you have searched everywhere.
+
+Q: Will I have to pay for a damaged or lost device?
+A: This SOP does not decide that. IT Support only records the facts. For repeated damage or
+   negligent loss, the HR Manager decides on any follow-up under the Company's HR rules.
+
+Q: What happens to the data on my old laptop?
+A: Store important files in the approved Company cloud storage. IT Support restores approved data to
+   the replacement where possible. The old laptop is wiped after return, unless the Information
+   Security Lead has placed it on hold.
+
+Q: Do I need to return the old charger and accessories?
+A: Yes. Return the device and all accessories that were issued with it within 2 Business Days of
+   receiving the replacement, and at the latest on your last working day if you are leaving.
+
+Q: What is a Loaner Device and who can have one?
+A: It is a temporary standard device for employees whose assigned laptop or desktop has failed and
+   who cannot work. It is issued by IT Support from stock after identity verification and must be
+   returned within 2 Business Days after the replacement is given to you.
+
+Q: How can I check which assets are assigned to me?
+A: Ask IT Support for your asset list through a ServiceDesk Portal ticket. You also confirm your
+   assets during the physical verification that is done every 6 months.
+
+Q: What are the asset statuses?
+A: Available, Assigned, Under Maintenance, Replacement Requested and Retired.
+
+====================================================================================================
+END OF DOCUMENT ATAI-IT-SOP-003
+====================================================================================================

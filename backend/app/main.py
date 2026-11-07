@@ -6,6 +6,7 @@ from backend.app.api.routes.health import router as health_router
 from backend.app.api.routes.auth import router as auth_router
 from backend.app.api.routes.tickets import router as tickets_router
 from backend.app.api.routes.ai_chat import router as ai_chat_router
+from backend.app.api.routes.knowledge import router as knowledge_router
 from backend.app.core.config import settings
 from backend.app.core.logging import setup_logging
 
@@ -24,6 +25,7 @@ app.include_router(health_router)
 app.include_router(auth_router)
 app.include_router(tickets_router)
 app.include_router(ai_chat_router)
+app.include_router(knowledge_router)
 
 logger.info(
     "Application started | name=%s | version=%s | environment=%s",

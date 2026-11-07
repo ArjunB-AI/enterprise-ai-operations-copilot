@@ -12,6 +12,7 @@ from backend.app.models.ticket import Ticket
 from backend.app.models.ai_conversation import AIConversation
 from backend.app.models.ai_chat_message import AIChatMessage
 from backend.app.models.ticket_message import TicketMessage
+from backend.app.models.knowledge_document import KnowledgeDocument
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
