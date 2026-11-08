@@ -15,6 +15,8 @@ from backend.app.services.document_service import (
     delete_stored_file,
 )
 
+from backend.app.services.chunking_service import store_document_chunks
+
 
 router = APIRouter(
     prefix="/knowledge",
@@ -54,11 +56,21 @@ async def upload_knowledge_document(
             uploaded_by=current_user.id,
         )
 
+        
         db.add(document)
+        db.flush()
+
+        store_document_chunks(
+            db=db,
+            document_id=document.id,
+            text=document.extracted_text or "",
+        )
+
         db.commit()
         db.refresh(document)
 
         return document
+
 
     except ValueError as error:
         raise HTTPException(
