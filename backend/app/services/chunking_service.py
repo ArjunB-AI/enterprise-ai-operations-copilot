@@ -1,19 +1,31 @@
 
 import re
 
-import tiktoken
+from transformers import AutoTokenizer
 from sqlalchemy.orm import Session
 
 from backend.app.models.document_chunk import DocumentChunk
 
 
-CHUNK_SIZE = 500
-CHUNK_OVERLAP = 100
-TOKEN_ENCODING = "cl100k_base"
+MODEL_NAME = "BAAI/bge-small-en-v1.5"
+
+CHUNK_SIZE = 450
+CHUNK_OVERLAP = 75
+
+tokenizer = None
 
 
-def get_encoding():
-    return tiktoken.get_encoding(TOKEN_ENCODING)
+def get_tokenizer():
+    global tokenizer
+
+    if tokenizer is None:
+        print(f"Loading tokenizer: {MODEL_NAME}")
+
+        tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+
+        print("Tokenizer loaded successfully.")
+
+    return tokenizer
 
 
 def is_section_heading(line: str) -> bool:
@@ -81,88 +93,103 @@ def split_into_sections(text: str) -> list[dict]:
     ]
 
 
-def merge_short_sections(
-    sections: list[dict],
-    encoding,
-    chunk_size: int = CHUNK_SIZE,
-) -> list[dict]:
-    """
-    Merge adjacent short sections when their combined token count
-    does not exceed the target chunk size.
 
-    Preserve all section headings in the combined content.
-    """
-
+def merge_short_sections(sections, tokenizer, chunk_size=CHUNK_SIZE):
     merged_sections = []
 
     for section in sections:
-        content = section["content"]
-        token_count = len(encoding.encode(content))
+        current_content = section["content"]
+
+        current_token_count = len(
+            tokenizer.encode(
+                current_content,
+                add_special_tokens=False,
+            )
+        )
+
+        if not merged_sections:
+            merged_sections.append(section)
+            continue
+
+        previous_section = merged_sections[-1]
+
+        combined_content = (
+            previous_section["content"] + "\n\n" + current_content
+        )
+
+        combined_token_count = len(
+            tokenizer.encode(
+                combined_content,
+                add_special_tokens=False,
+            )
+        )
 
         if (
-            merged_sections
-            and token_count < chunk_size
-            and len(
-                encoding.encode(
-                    merged_sections[-1]["content"] + "\n" + content
-                )
-            ) <= chunk_size
+            current_token_count < chunk_size
+            and combined_token_count <= chunk_size
         ):
-            previous = merged_sections[-1]
-
-            previous["content"] += "\n" + content
-
-            # Keep the first section title as the primary title.
+            previous_section["content"] = combined_content
         else:
-            merged_sections.append({
-                "section_title": section["section_title"],
-                "content": content,
-            })
+            merged_sections.append(section)
 
     return merged_sections
 
-
 def chunk_section(
-    content: str,
-    encoding,
-    chunk_size: int = CHUNK_SIZE,
-    chunk_overlap: int = CHUNK_OVERLAP,
-) -> list[dict]:
-    tokens = encoding.encode(content)
+    content,
+    tokenizer,
+    chunk_size=CHUNK_SIZE,
+    chunk_overlap=CHUNK_OVERLAP,
+):
+    tokens = tokenizer.encode(
+        content,
+        add_special_tokens=False,
+    )
+
     chunks = []
-
-    if not tokens:
-        return chunks
-
-    step = chunk_size - chunk_overlap
     start = 0
     chunk_index = 0
 
+    step = chunk_size - chunk_overlap
+
     while start < len(tokens):
-        end = min(start + chunk_size, len(tokens))
+        end = start + chunk_size
+
         chunk_tokens = tokens[start:end]
 
-        chunks.append({
-            "content": encoding.decode(chunk_tokens),
-            "token_count": len(chunk_tokens),
-            "chunk_index": chunk_index,
-        })
+        chunk_text = tokenizer.decode(
+            chunk_tokens,
+            skip_special_tokens=True,
+            clean_up_tokenization_spaces=False,
+        )
 
-        if end == len(tokens):
-            break
+        actual_token_count = len(
+            tokenizer.encode(
+                chunk_text,
+                add_special_tokens=False,
+            )
+        )
+
+        if chunk_text.strip():
+            chunks.append({
+                "content": chunk_text,
+                "token_count": actual_token_count,
+                "chunk_index": chunk_index,
+            })
+
+            chunk_index += 1
 
         start += step
-        chunk_index += 1
 
     return chunks
+
+
 
 
 def create_document_chunks(
     text: str,
     chunk_size: int = CHUNK_SIZE,
     chunk_overlap: int = CHUNK_OVERLAP,
-) -> list[dict]:
-
+):
     if not text or not text.strip():
         return []
 
@@ -174,38 +201,38 @@ def create_document_chunks(
             "Chunk overlap must be non-negative and smaller than chunk size."
         )
 
-    encoding = get_encoding()
+    tokenizer = get_tokenizer()
 
     sections = split_into_sections(text)
 
     sections = merge_short_sections(
-        sections=sections,
-        encoding=encoding,
-        chunk_size=chunk_size,
+        sections,
+        tokenizer,
+        chunk_size,
     )
 
-    document_chunks = []
-    chunk_index = 0
+    all_chunks = []
+    global_chunk_index = 0
 
     for section in sections:
         section_chunks = chunk_section(
             content=section["content"],
-            encoding=encoding,
+            tokenizer=tokenizer,
             chunk_size=chunk_size,
             chunk_overlap=chunk_overlap,
         )
 
         for chunk in section_chunks:
-            document_chunks.append({
-                "chunk_index": chunk_index,
+            all_chunks.append({
+                "chunk_index": global_chunk_index,
                 "content": chunk["content"],
                 "token_count": chunk["token_count"],
                 "section_title": section["section_title"],
             })
 
-            chunk_index += 1
+            global_chunk_index += 1
 
-    return document_chunks
+    return all_chunks
 
 
 def store_document_chunks(
