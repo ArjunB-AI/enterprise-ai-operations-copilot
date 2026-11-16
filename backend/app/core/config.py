@@ -8,6 +8,9 @@ class Settings(BaseSettings):
     database_url: str
     vector_database_url: str
 
+    groq_api_key: str
+    groq_model: str = "openai/gpt-oss-20b"
+
     jwt_secret_key: str
     jwt_algorithm: str = "HS256"
     jwt_access_token_expire_minutes: int = 60

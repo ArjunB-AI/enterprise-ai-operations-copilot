@@ -46,3 +46,23 @@ class AIChatMessageResponse(BaseModel):
     model_config = {
         "from_attributes": True
     }
+
+class AIChatSourceResponse(BaseModel):
+    source: str
+    document_id: int
+    file_name: str
+    chunk_id: int
+    chunk_index: int
+    section_title: str | None
+    similarity_score: float
+
+
+class AIChatAssistantResponse(BaseModel):
+    answer: str
+    sources: list[AIChatSourceResponse]
+
+
+class AIChatTurnResponse(BaseModel):
+    user_message: AIChatMessageResponse
+    assistant_message: AIChatMessageResponse
+    sources: list[AIChatSourceResponse]

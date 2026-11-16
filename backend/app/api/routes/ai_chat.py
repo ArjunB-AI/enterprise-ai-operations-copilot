@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
 from backend.app.api.dependencies import get_current_user
-from backend.app.db.dependencies import get_db
+from backend.app.db.dependencies import get_db, get_vector_db
 from backend.app.models.ai_chat_message import AIChatMessage
 from backend.app.models.ai_conversation import AIConversation
 from backend.app.models.user import User
@@ -14,7 +14,10 @@ from backend.app.schemas.ai_chat import (
     AIChatMessageResponse,
     AIConversationCreate,
     AIConversationResponse,
+    AIChatTurnResponse,
 )
+
+from backend.app.services.rag_service import generate_rag_response
 
 
 router = APIRouter(
@@ -64,7 +67,7 @@ def get_my_conversations(
 
 @router.post(
     "/conversations/{conversation_id}/messages",
-    response_model=AIChatMessageResponse,
+    response_model=AIChatTurnResponse,
     status_code=status.HTTP_201_CREATED,
 )
 def create_user_message(
@@ -72,7 +75,9 @@ def create_user_message(
     message_data: AIChatMessageCreate,
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
+    vector_db: Session = Depends(get_vector_db),
 ):
+    # Step 1: Verify conversation ownership.
     conversation = (
         db.query(AIConversation)
         .filter(
@@ -88,19 +93,50 @@ def create_user_message(
             detail="Conversation not found",
         )
 
-    message = AIChatMessage(
+    # Step 2: Save the employee's message.
+    user_message = AIChatMessage(
         conversation_id=conversation.id,
         role="user",
         content=message_data.content,
     )
 
+
     conversation.updated_at = datetime.utcnow()
-
-    db.add(message)
+    db.add(user_message)
     db.commit()
-    db.refresh(message)
+    db.refresh(user_message)
 
-    return message
+    # Step 3: Generate an answer using RAG.
+    try:
+        rag_result = generate_rag_response(
+            query=message_data.content,
+            db=db,
+            vector_db=vector_db,
+        )
+
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY,
+            detail="Failed to generate an AI response. Please try again.",
+        ) from exc
+
+    # Step 4: Save the assistant's response.
+    assistant_message = AIChatMessage(
+        conversation_id=conversation.id,
+        role="assistant",
+        content=rag_result["answer"],
+    )
+
+    db.add(assistant_message)
+    db.commit()
+    db.refresh(assistant_message)
+
+    # Step 5: Return both messages and document sources.
+    return {
+        "user_message": user_message,
+        "assistant_message": assistant_message,
+        "sources": rag_result["sources"],
+    }
 
 @router.get(
     "/conversations/{conversation_id}/messages",
