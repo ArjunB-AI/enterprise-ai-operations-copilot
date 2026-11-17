@@ -1,7 +1,13 @@
 
+import logging
+import time
+
 from groq import Groq
 
 from backend.app.core.config import settings
+
+
+logger = logging.getLogger(__name__)
 
 
 # Initialize the Groq client.
@@ -14,6 +20,15 @@ def generate_llm_response(
     system_prompt: str,
     user_prompt: str,
 ) -> str:
+
+    logger.info(
+        "LLM request started | model=%s | system_prompt_chars=%s | user_prompt_chars=%s",
+        settings.groq_model,
+        len(system_prompt),
+        len(user_prompt),
+    )
+
+    start_time = time.perf_counter()
 
     try:
         response = client.chat.completions.create(
@@ -37,9 +52,29 @@ def generate_llm_response(
         if not answer:
             raise RuntimeError("Groq returned an empty response.")
 
+        elapsed_time = time.perf_counter() - start_time
+
+        usage = response.usage
+
+        logger.info(
+            "LLM response received | model=%s | duration_seconds=%.2f | prompt_tokens=%s | completion_tokens=%s",
+            settings.groq_model,
+            elapsed_time,
+            usage.prompt_tokens if usage else None,
+            usage.completion_tokens if usage else None,
+        )
+
         return answer.strip()
 
-    except Exception as exc:
+    except Exception:
+        elapsed_time = time.perf_counter() - start_time
+
+        logger.exception(
+            "LLM request failed | model=%s | duration_seconds=%.2f",
+            settings.groq_model,
+            elapsed_time,
+        )
+
         raise RuntimeError(
             "Failed to generate a response using Groq."
-        ) from exc
+        ) from None
