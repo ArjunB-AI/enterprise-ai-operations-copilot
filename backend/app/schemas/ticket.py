@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Literal
 
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 
 TicketType = Literal["incident", "request", "asset", "onboarding"]
@@ -14,6 +14,28 @@ class TicketCreate(BaseModel):
     title: str
     description: str
     priority: TicketPriority = "medium"
+
+    model_config = {"extra": "forbid"}
+
+    @field_validator("title")
+    @classmethod
+    def validate_title(cls, value: str) -> str:
+        value = value.strip()
+
+        if not value:
+            raise ValueError("Ticket title cannot be empty.")
+
+        return value
+
+    @field_validator("description")
+    @classmethod
+    def validate_description(cls, value: str) -> str:
+        value = value.strip()
+
+        if not value:
+            raise ValueError("Ticket description cannot be empty.")
+
+        return value
 
 
 class TicketUpdate(BaseModel):

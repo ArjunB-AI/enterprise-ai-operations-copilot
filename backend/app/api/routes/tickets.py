@@ -12,6 +12,11 @@ from backend.app.schemas.ticket_message import (
     TicketMessageResponse,
 )
 
+from backend.app.services.ticket_service import (
+    create_ticket as create_ticket_service,
+    get_my_tickets as get_my_tickets_service,
+)
+
 
 router = APIRouter(
     prefix="/tickets",
@@ -29,37 +34,25 @@ def create_ticket(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
-    ticket = Ticket(
-        ticket_type=ticket_data.ticket_type,
-        title=ticket_data.title,
-        description=ticket_data.description,
-        priority=ticket_data.priority,
-        created_by=current_user.id,
-        status="open",
+    return create_ticket_service(
+        db=db,
+        ticket_data=ticket_data,
+        current_user=current_user,
     )
-
-    db.add(ticket)
-    db.commit()
-    db.refresh(ticket)
-
-    return ticket
 
 @router.get(
     "/my",
     response_model=list[TicketResponse],
 )
+
 def get_my_tickets(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
-    tickets = (
-        db.query(Ticket)
-        .filter(Ticket.created_by == current_user.id)
-        .order_by(Ticket.created_at.desc())
-        .all()
+    return get_my_tickets_service(
+        db=db,
+        current_user=current_user,
     )
-
-    return tickets
 
 # it support side endponts
 @router.get(

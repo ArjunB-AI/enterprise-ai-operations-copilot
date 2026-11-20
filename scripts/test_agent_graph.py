@@ -6,6 +6,7 @@ from backend.app.agents.graph import build_agent_graph
 
 from backend.app.db.session import SessionLocal
 from backend.app.db.vector_session import VectorSessionLocal
+from backend.app.models.user import User
 
 
 # Enable detailed logs for this diagnostic test.
@@ -25,17 +26,31 @@ vector_db = VectorSessionLocal()
 
 test_messages = [
     # Query that previously returned no relevant sources.
-    "How can I replace my laptop?",
+    #"How can I replace my laptop?",
 
     # Query that previously retrieved a relevant document.
-    "How can an employee get a laptop replaced?",
+    #"How can an employee get a laptop replaced?",
 
     # Action intent test.
-    "Create a ticket because my laptop is not working.",
+    #"Create a ticket because my laptop is not working.",
+
+    "Show me all my tickets and their current status.",
+
+    #"Show me all my tickets and their current status.",
+    #"Create an incident ticket. My laptop screen is flickering and difficult to read.",
 ]
 
 
 try:
+    current_user = (
+    db.query(User)
+    .filter(User.role == "employee")
+    .first()
+)
+
+    if current_user is None:
+        raise RuntimeError("No employee user found for agent testing.")
+    
     for index, message in enumerate(test_messages, start=1):
 
         print("\n" + "=" * 70)
@@ -56,6 +71,7 @@ try:
             context={
                 "db": db,
                 "vector_db": vector_db,
+                "current_user": current_user,
             },
         )
 

@@ -78,3 +78,67 @@ def generate_llm_response(
         raise RuntimeError(
             "Failed to generate a response using Groq."
         ) from None
+
+
+
+def generate_tool_call(
+    system_prompt: str,
+    user_prompt: str,
+    tools: list[dict],
+):
+    logger.info(
+        "LLM tool request started | model=%s | tool_count=%s",
+        settings.groq_model,
+        len(tools),
+    )
+
+    start_time = time.perf_counter()
+
+    try:
+        response = client.chat.completions.create(
+            model=settings.groq_model,
+            messages=[
+                {
+                    "role": "system",
+                    "content": system_prompt,
+                },
+                {
+                    "role": "user",
+                    "content": user_prompt,
+                },
+            ],
+            tools=tools,
+            tool_choice="auto",
+            temperature=0.2,
+            max_completion_tokens=1024,
+        )
+
+        message = response.choices[0].message
+
+        elapsed_time = time.perf_counter() - start_time
+        usage = response.usage
+
+        logger.info(
+            "LLM tool response received | model=%s | duration_seconds=%.2f | prompt_tokens=%s | completion_tokens=%s | tool_calls=%s",
+            settings.groq_model,
+            elapsed_time,
+            usage.prompt_tokens if usage else None,
+            usage.completion_tokens if usage else None,
+            len(message.tool_calls or []),
+        )
+
+        return message
+
+    except Exception:
+        elapsed_time = time.perf_counter() - start_time
+
+        logger.exception(
+            "LLM tool request failed | model=%s | duration_seconds=%.2f",
+            settings.groq_model,
+            elapsed_time,
+        )
+
+        raise RuntimeError(
+            "Failed to generate a tool call using Groq."
+        ) from None
+
