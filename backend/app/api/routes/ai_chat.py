@@ -5,7 +5,7 @@ from datetime import datetime
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
-from backend.app.api.dependencies import get_current_user
+from backend.app.api.dependencies import require_role
 from backend.app.db.dependencies import get_db, get_vector_db
 from backend.app.models.ai_chat_message import AIChatMessage
 from backend.app.models.ai_conversation import AIConversation
@@ -18,7 +18,7 @@ from backend.app.schemas.ai_chat import (
     AIChatTurnResponse,
 )
 
-from backend.app.services.rag_service import generate_rag_response
+from backend.app.agents.graph import build_agent_graph
 
 
 logger = logging.getLogger(__name__)
@@ -29,6 +29,8 @@ router = APIRouter(
     tags=["AI Chat"],
 )
 
+agent = build_agent_graph()
+
 
 @router.post(
     "/conversations",
@@ -37,7 +39,7 @@ router = APIRouter(
 )
 def create_conversation(
     conversation_data: AIConversationCreate,
-    current_user: User = Depends(get_current_user),
+    current_user: User = Depends(require_role("employee")),
     db: Session = Depends(get_db),
 ):
     logger.info(
@@ -68,7 +70,7 @@ def create_conversation(
     response_model=list[AIConversationResponse],
 )
 def get_my_conversations(
-    current_user: User = Depends(get_current_user),
+    current_user: User = Depends(require_role("employee")),
     db: Session = Depends(get_db),
 ):
     conversations = (
@@ -95,7 +97,7 @@ def get_my_conversations(
 def create_user_message(
     conversation_id: int,
     message_data: AIChatMessageCreate,
-    current_user: User = Depends(get_current_user),
+    current_user: User = Depends(require_role("employee")),
     db: Session = Depends(get_db),
     vector_db: Session = Depends(get_vector_db),
 ):
@@ -151,23 +153,31 @@ def create_user_message(
         conversation_id,
     )
 
-    # Step 3: Generate an answer using RAG.
+    # Step 3: Execute the LangGraph AI agent.
     try:
         logger.info(
-            "Calling RAG service | conversation_id=%s",
+            "Invoking AI agent | conversation_id=%s",
             conversation_id,
         )
 
-        rag_result = generate_rag_response(
-            query=message_data.content,
-            db=db,
-            vector_db=vector_db,
+        agent_result = agent.invoke(
+            {
+                "user_message": message_data.content,
+                "intent": "",
+                "response": "",
+                "sources": [],
+            },
+            context={
+                "db": db,
+                "vector_db": vector_db,
+                "current_user": current_user,
+            },
         )
 
         logger.info(
-            "RAG service completed | conversation_id=%s | source_count=%s",
+            "AI agent completed | conversation_id=%s | source_count=%s",
             conversation_id,
-            len(rag_result["sources"]),
+            len(agent_result["sources"]),
         )
 
     except Exception:
@@ -186,7 +196,7 @@ def create_user_message(
     assistant_message = AIChatMessage(
         conversation_id=conversation.id,
         role="assistant",
-        content=rag_result["answer"],
+        content=agent_result["response"],
     )
 
     db.add(assistant_message)
@@ -208,7 +218,7 @@ def create_user_message(
     return {
         "user_message": user_message,
         "assistant_message": assistant_message,
-        "sources": rag_result["sources"],
+        "sources": agent_result["sources"],
     }
 
 
@@ -218,7 +228,7 @@ def create_user_message(
 )
 def get_conversation_messages(
     conversation_id: int,
-    current_user: User = Depends(get_current_user),
+    current_user: User = Depends(require_role("employee")),
     db: Session = Depends(get_db),
 ):
     conversation = (

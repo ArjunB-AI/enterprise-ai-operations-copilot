@@ -179,7 +179,6 @@ def action_node(
                 "sources": [],
             }
 
-                # Reject multiple tool calls to prevent accidental
         # duplicate or uncontrolled operations.
         if len(message.tool_calls) != 1:
             logger.warning(
